@@ -1,4 +1,4 @@
-resource "google_storage_bucket" "auto-expire" {
+resource "google_storage_bucket" "website" {
   name          = "iac-terra"
   project       = "iac-terra"
   location      = "US"
