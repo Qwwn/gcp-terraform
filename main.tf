@@ -1,6 +1,6 @@
 resource "google_storage_bucket" "auto-expire" {
   name          = "iac-terra"
-  project = "iac-terra"
+  project       = "iac-terra"
   location      = "US"
   force_destroy = true
 
