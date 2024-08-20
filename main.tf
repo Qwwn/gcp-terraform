@@ -4,7 +4,6 @@ resource "google_storage_bucket" "website" {
   location      = "US"
   force_destroy = true
 
-  public_access_prevention = "enforced"
 }
 
 # make new object public
