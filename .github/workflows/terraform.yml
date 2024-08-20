@@ -48,6 +48,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+  workflow_dispatch:  # Menambahkan opsi manual trigger
 
 permissions:
   contents: read
@@ -94,5 +95,12 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve "tfplan"
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+
+    # Langkah untuk menghancurkan infrastruktur yang dijalankan secara manual
+    - name: Terraform Destroy
+      if: github.event_name == 'workflow_dispatch'
+      run: terraform destroy -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
